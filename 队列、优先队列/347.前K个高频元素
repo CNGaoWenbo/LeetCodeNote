@@ -1,3 +1,7 @@
+/*
+用堆实现O(Nlogk)，第一次不会，隔几天重写一次通过。
+重点：map可以覆盖同key的value；优先队列的构造（重写比较器）
+*/
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
         Map<Integer, Integer> map = new HashMap<>();
