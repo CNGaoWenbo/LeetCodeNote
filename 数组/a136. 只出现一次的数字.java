@@ -18,6 +18,7 @@ class Solution {
     }
 }
 /*
+一开始自己想的方法，先排序
 class Solution {
     public int singleNumber(int[] nums) {
         Arrays.sort(nums);
@@ -27,4 +28,8 @@ class Solution {
         return nums[nums.length-1];
     }
 }
+
+其他的方法 
+在集合放入新元素，删除重复元素
+哈希表记录出现次数再遍历
 */
