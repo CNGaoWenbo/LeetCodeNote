@@ -18,6 +18,7 @@ class Solution {
     }
 }
 /*
+非原地的笨办法
 一开始自己想的方法，先排序
 class Solution {
     public int singleNumber(int[] nums) {
