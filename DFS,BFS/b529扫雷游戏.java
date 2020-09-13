@@ -1,6 +1,8 @@
 /*
 BFS, 队列辅助，第一次独立写出来的bfs，但是两周没写bfs类型的又生疏了
+下面还有DFS递归版本，注意count在每次递归调用后都是重置为0的
 */
+
 class Solution {
     int[] dirX = new int[] {0, 0, 1, 1, 1, -1, -1, -1};
     int[] dirY = new int[] {-1, 1, -1, 0, 1,-1, 0, 1};
@@ -46,5 +48,47 @@ class Solution {
                 }
             }
         }
+    }
+}
+//DFS,递归版本
+class Solution{
+    int[] dirX = new int[] {0, 0, 1, 1, 1, -1, -1, -1};
+    int[] dirY = new int[] {-1, 1, -1, 0, 1,-1, 0, 1};
+
+    public char[][] updateBoard(char[][] board, int[] click){
+        int x = click[0];
+        int y = click[1];
+        if(board[x][y] == 'M') board[x][y] = 'X';
+        else{
+            dfs(board, click);
+        }
+        return board;
+    }
+
+    public void dfs(char[][] board, int[] click){
+        int x = click[0];
+        int y = click[1];
+        int count = 0;
+        for(int i = 0; i < 8; i ++){
+            int newX = x + dirX[i];
+            int newY = y + dirY[i];
+            if(newX >= 0 && newX < board.length && newY >= 0 && newY < board[0].length){
+                if(board[newX][newY] == 'M') count++;
+            }
+        }
+        if(count != 0) board[x][y] = (char)(count+'0');
+        else{
+            board[x][y] = 'B';
+            for(int i = 0; i < 8; i ++){
+                int newX = x + dirX[i];
+                int newY = y + dirY[i];
+                if(newX >= 0 && newX < board.length && newY >= 0 && newY < board[0].length){
+                    if(board[newX][newY] == 'E') {
+                        dfs(board, new int[]{newX, newY});
+                    }
+                }
+            }
+        }
+
     }
 }
