@@ -2,6 +2,7 @@
 BFS+队列
 */
 //下面是自己写的第一版BFS，可以改进的地方是vis，每次把某一个坐标加入队列后，把值置为‘0’即可，不需要再浪费一个vis[m][n]的空间
+//附变形题 岛屿最大面积
 class Solution {
     public int numIslands(char[][] grid) {
         int count = 0;
@@ -58,5 +59,45 @@ class Solution {
         for(int i = 0; i < 4; i ++){
             dfs(grid, x+dirX[i], y+dirY[i]);
         }
+    }
+}
+
+//岛屿最大面积
+class Solution {
+    public int maxAreaOfIsland(int[][] grid) {
+        if(grid.length == 0) return 0;
+        List<Integer> ans = new ArrayList<>();
+        for(int i = 0; i < grid.length; i ++){
+            for(int j = 0; j < grid[0].length; j ++){
+                if(grid[i][j] == 1){
+                    ans.add(bfs(grid, i, j));
+                }
+            }
+        }
+        if(ans.size() == 0) return 0;
+        Collections.sort(ans);
+        return ans.get(ans.size()-1);
+    }
+    
+    public int bfs(int[][] grid, int x, int y){
+        int count = 1;
+        int[] dirX = new int[]{0, 0, 1, -1};
+        int[] dirY = new int[]{1, -1, 0, 0};
+        Queue<int[]> q = new LinkedList<>();
+        q.offer(new int[]{x, y});
+        grid[x][y] = 0;
+        while(!q.isEmpty()){
+            int[] pos = q.poll();
+            for(int i = 0; i < 4; i++){
+                int newX = pos[0]+dirX[i];
+                int newY = pos[1]+dirY[i];
+                if(newX >= 0 && newX < grid.length && newY >= 0 && newY < grid[0].length && grid[newX][newY] == 1){
+                    q.offer(new int[]{newX, newY});
+                    grid[newX][newY] = 0;
+                    count ++;
+                }
+            }
+        }
+        return count;
     }
 }
