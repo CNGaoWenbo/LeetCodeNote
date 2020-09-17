@@ -9,7 +9,7 @@ class Solution {
         Arrays.sort(nums);
         for(int i = 0; i < nums.length-2; i ++){
             if(nums[i] > 0) break;
-            if(i>0 && nums[i] == nums[i-1]) continue;//i去重【注意】跟i-1比，而不是i+1
+            if(i>0 && nums[i] == nums[i-1]) continue;//i去重【！注意！】跟i-1比，而不是i+1。会遗漏可能组合，如-1-12
             int L = i+1;
             int R = nums.length-1;
             while(L < R){
