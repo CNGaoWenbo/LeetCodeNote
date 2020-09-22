@@ -1,0 +1,28 @@
+/*
+似乎写复杂了
+只有都是9...的情况才需要扩展数组长度
+*/
+class Solution {
+    public int[] plusOne(int[] digits) {
+        if(digits[0] == 0) return new int[]{1};
+        int i = 0;
+        boolean flag = true;
+        while(flag && i < digits.length){
+            int index = digits.length-1-i;
+            int num = digits[index] + 1;
+            if(num/10 == 1) {
+                flag = true;
+                digits[index] = num-10;
+            }else{
+                flag = false;
+                digits[index] = num;                
+            }
+            i++;
+        }
+        if(digits[0] == 0){
+            digits = new int[digits.length+1];
+            digits[0] = 1;
+        }
+        return digits;
+    }
+}
