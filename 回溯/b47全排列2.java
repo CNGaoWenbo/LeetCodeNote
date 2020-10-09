@@ -1,4 +1,5 @@
 /*
+做题记录 9.28 10.09
 核心问题在于去重（剪枝）
 思路是，先排序让数值相同的数挨着。对相同的数而言，只有第一个数插入才允许后面其他相等的数插入，相当于把相同的数看作不同的数区分开；
 例如，[1,1,1,2]，看作[1,1',1'',2]。只有1被写入后才能写1‘，只有1和1’写入后才能写入1‘’
@@ -31,7 +32,7 @@ class Solution {
     }
     public void tracBack(int[] nums, List<Integer> path, boolean[] vis){
         if(path.size() == nums.length){
-            res.add(new ArrayList(path));
+            res.add(new ArrayList(path));//【注意】
             return;
         }
         for(int i = 0; i < nums.length; i ++){
