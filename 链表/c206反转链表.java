@@ -6,6 +6,8 @@
  *     ListNode(int x) { val = x; }
  * }
  */
+//已多次练习（3）
+//b->c 11/12
 class Solution {
     public ListNode reverseList(ListNode head) {
         if(head == null) return head;
