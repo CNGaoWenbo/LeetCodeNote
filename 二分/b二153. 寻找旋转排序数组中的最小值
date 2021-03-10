@@ -1,19 +1,15 @@
-//未搞懂
+//类似旋转数组搜索，判断mid是在大/小段。小段mid就可能，大段mid就不可能
 class Solution {
     public int findMin(int[] nums) {
         int left = 0;
         int right = nums.length-1;
         while(left < right){
             int mid = left + (right-left)/2;
-            if(nums[mid] > nums[mid+1]){
-                return nums[mid+1];
-            }
-            if(nums[mid] < nums[right]){
-                right = mid;
+            if(nums[mid] > nums[right]){//mid在大段，mid不可能，删掉左边
+                left = mid + 1;
             }else{
-                left = mid+1;
+                right = mid;
             }
-            
         }
         return nums[left];
     }
