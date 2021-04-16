@@ -1,0 +1,19 @@
+ - 二叉树最大直径的进阶版，一个意思
+··· java
+class Solution {
+    long ans = Long.MIN_VALUE;
+    public int maxPathSum(TreeNode root) {
+        dfs(root);
+        return (int)ans;
+    }
+
+    //返回从root往下走的最大值(含自己的值)
+    public long dfs(TreeNode root){
+        if(root == null) return 0;
+        long left = dfs(root.left);
+        long right = dfs(root.right);
+        ans = Math.max(left + root.val + right, ans);
+        return Math.max(0, root.val + Math.max(left, right));
+    }
+}
+```
