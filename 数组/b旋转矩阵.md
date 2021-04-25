@@ -1,4 +1,4 @@
-/*
+
 重点：写出旋转4点的元素的索引
 row,col ----------- col, n-col-1
   |                       |
@@ -11,12 +11,7 @@ n-col-1,row ----- n-row-1,n-col-1
 ..x..   =下一项=>   ..x**   =下一项=>   ..x..   =下一项=>   **x..
 .....              .....              ..***              **...
 .....              .....              ..***              **...
-
-作者：LeetCode-Solution
-链接：https://leetcode-cn.com/problems/rotate-matrix-lcci/solution/xuan-zhuan-ju-zhen-by-leetcode-solution/
-来源：力扣（LeetCode）
-著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
-*/
+``` java
 class Solution {
     public void rotate(int[][] matrix) {
         int n = matrix[0].length;
@@ -31,3 +26,28 @@ class Solution {
         }
     }
 }  
+```
+``` java
+class Solution {
+    public void rotate(int[][] matrix) {
+        int n = matrix.length;
+        // 水平翻转
+        for (int i = 0; i < n / 2; ++i) {
+            for (int j = 0; j < n; ++j) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[n - i - 1][j];
+                matrix[n - i - 1][j] = temp;
+            }
+        }
+        // 主对角线翻转
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < i; ++j) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+    }
+}
+
+```
