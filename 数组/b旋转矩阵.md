@@ -27,6 +27,10 @@ class Solution {
     }
 }  
 ```
+先水平翻转
+row col -> n-row-1 col
+再对角线翻转
+row col -> col row
 ``` java
 class Solution {
     public void rotate(int[][] matrix) {
